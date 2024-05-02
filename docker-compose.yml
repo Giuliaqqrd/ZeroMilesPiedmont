@@ -1,0 +1,66 @@
+services:
+
+  mongo-user:
+    image: mongo:latest
+    container_name: mongo-user
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=user
+    ports:
+      - "27090:27017"
+    volumes:
+      - mongo_data_user:/data/db
+    restart: always
+    networks:
+      - backendnetwork
+
+  mongo-company:
+    image: mongo:latest
+    container_name: mongo-company
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=company
+    ports:
+      - "27091:27017"
+    volumes:
+      - mongo_data_company:/data/db
+    restart: always
+    networks:
+      - backendnetwork
+
+  mongo-shop:
+    image: mongo:latest
+    container_name: mongo-shop
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=shop
+    ports:
+      - "27092:27017"
+    volumes:
+      - mongo_data_shop:/data/db
+    restart: always
+    networks:
+      - backendnetwork
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+    networks:
+      - backendnetwork
+
+
+volumes:
+  mongo_data_user:
+  mongo_data_company:
+  mongo_data_shop:
+
+networks:
+  backendnetwork:
+    driver: bridge

@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: company-service
+  data:
+    mongodb:
+      database: company
+      authentication-database: admin
+      host: localhost
+      port: 27091
+      username: admin
+      password: password
+      auto-index-creation: true
+
+server:
+  port: 8091
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
