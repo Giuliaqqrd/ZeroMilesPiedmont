@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(value = "products")
@@ -12,6 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Builder
 @Data
+@CompoundIndexes({
+        @CompoundIndex(name = "nameprod_idcomp", def = "{'name': 1, 'company.id': 1}")
+})
 public class Product {
     @Id
     private String id;
@@ -19,4 +24,10 @@ public class Product {
     private int quantity;
     private float price;
     private Company company;
+
+
+
 }
+
+
+
