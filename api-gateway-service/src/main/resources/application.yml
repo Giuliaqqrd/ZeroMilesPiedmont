@@ -20,17 +20,17 @@ spring:
          - id: user-service
            uri: lb://user-service
            predicates:
-             - Path=/api/user
+             - Path=/api/user/**
 
          - id: company-service
            uri: lb://company-service
            predicates:
-             - Path=/api/company
+             - Path=/api/company/**
 
          - id: shop-service
            uri: lb://shop-service
            predicates:
-             - Path=/api/shop
+             - Path=/api/shop/**
 
 
 server:

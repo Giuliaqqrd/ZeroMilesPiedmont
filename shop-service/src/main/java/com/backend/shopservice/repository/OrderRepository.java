@@ -10,5 +10,6 @@ public interface OrderRepository extends MongoRepository<Order, String> {
     List<Order> findAllById(String id);
     List<Order> findAllByProductCompanyIdOrderByDateTime(String companyId);
     List<Order> findAllByUserId(String userId);
+    List<Order> findAllByUserIdOrderByDateTime(String id);
 
 }

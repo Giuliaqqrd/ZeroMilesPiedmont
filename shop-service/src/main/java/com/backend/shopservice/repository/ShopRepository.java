@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface ShopRepository extends MongoRepository<Product,String> {
     List<Product> findAllByCompanyId(String companyId);
-
-
+    List<Product> findAllByPriceIsLessThan(Float price);
 }

@@ -20,6 +20,9 @@ public class ShopService {
 
     }
 
+    public List<Product> getAllProducts(){
+        return this.shopRepository.findAll();
+    }
     public void deleteProduct(String id) {
         this.shopRepository.deleteById(id);
     }
@@ -27,6 +30,11 @@ public class ShopService {
     public List<Product> getByCompanyId(String companyId){
         return shopRepository.findAllByCompanyId(companyId);
 
+    }
+
+
+    public List<Product> findByPriceLowerThan(float price){
+        return shopRepository.findAllByPriceIsLessThan(price);
     }
 
     public void saveOrder(Order order) {
@@ -45,7 +53,9 @@ public class ShopService {
         return orderRepository.findAllByUserId(userId);
     }
 
-
+    public List<Order> getOrdersByUserOrderedByDate(String userId){
+        return orderRepository.findAllByUserIdOrderByDateTime(userId);
+    }
 
 
 }

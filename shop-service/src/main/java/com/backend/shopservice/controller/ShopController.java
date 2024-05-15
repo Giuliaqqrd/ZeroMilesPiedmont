@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping("api/shop")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin("http://localhost:5173")
 public class ShopController {
     private final ShopService shopService;
 
@@ -32,6 +33,11 @@ public class ShopController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @GetMapping("/prodcutlist")
+    public ResponseEntity<?> getAllProducts(){
+        List<Product> products = this.shopService.getAllProducts();
+        return new ResponseEntity<>(products,HttpStatus.OK);
+    }
 
     @DeleteMapping("/product")
     public void deleteProduct(@RequestParam(name = "id") String id) {
@@ -59,6 +65,12 @@ public class ShopController {
     @GetMapping("/user_order")
     public ResponseEntity<?> getOrdersByUserId(@RequestParam(name = "userId") String id) {
         List<Order> orders = this.shopService.getOrdersByUser(id);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
+    @GetMapping("/user_order_by_date")
+    public ResponseEntity<?> getOrdersByUserIdOrderedByDate(@RequestParam(name = "userId") String id){
+        List<Order> orders = this.shopService.getOrdersByUserOrderedByDate(id);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
