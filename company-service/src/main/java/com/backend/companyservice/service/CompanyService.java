@@ -11,12 +11,16 @@ import java.util.List;
 public class CompanyService {
     private final CompanyRepository companyRepository;
 
-    public void saveCompany(Company company) {
-        this.companyRepository.save(company);
+    public Company saveCompany(Company company) {
+        return this.companyRepository.save(company);
     }
 
     public List<Company> getCompanies(){
         return this.companyRepository.findAll();
+    }
+
+    public Company getCompanyByEmail(String email) {
+        return this.companyRepository.findCompanyByEmail(email);
     }
 
 }

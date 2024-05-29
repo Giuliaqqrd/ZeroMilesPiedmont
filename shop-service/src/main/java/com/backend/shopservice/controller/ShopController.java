@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("api/shop")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin("http://localhost:5173")
 public class ShopController {
     private final ShopService shopService;
 
@@ -33,7 +32,7 @@ public class ShopController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/prodcutlist")
+    @GetMapping("/productlist")
     public ResponseEntity<?> getAllProducts(){
         List<Product> products = this.shopService.getAllProducts();
         return new ResponseEntity<>(products,HttpStatus.OK);
@@ -46,19 +45,14 @@ public class ShopController {
 
     @PostMapping("/order")
     public ResponseEntity<?> saveOrder(@RequestBody Order order){
-        this.shopService.saveOrder(order);
-        return new ResponseEntity<>(order, HttpStatus.OK);
+        Order savedOrder = this.shopService.saveOrder(order);
+        ResponseMessage<Order> responseMessage = new ResponseMessage<>(savedOrder, "L'ordine è stato salvato con successo");
+        return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
 
     @GetMapping("/order")
-    public ResponseEntity<?> getByOrdersId(@RequestParam(name = "orderId") String id) {
-        List<Order> orders = this.shopService.getAllOrders(id);
-        return new ResponseEntity<>(orders, HttpStatus.OK);
-    }
-
-    @GetMapping("/company_order")
     public ResponseEntity<?> getOrdersByCompanyId(@RequestParam(name= "companyId") String id) {
-        List<Order> orders = this.shopService.getOrdersByCompany(id);
+        List<Order> orders = this.shopService.getOrdersByCompanyId(id);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
@@ -67,12 +61,5 @@ public class ShopController {
         List<Order> orders = this.shopService.getOrdersByUser(id);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
-
-    @GetMapping("/user_order_by_date")
-    public ResponseEntity<?> getOrdersByUserIdOrderedByDate(@RequestParam(name = "userId") String id){
-        List<Order> orders = this.shopService.getOrdersByUserOrderedByDate(id);
-        return new ResponseEntity<>(orders, HttpStatus.OK);
-    }
-
 
 }

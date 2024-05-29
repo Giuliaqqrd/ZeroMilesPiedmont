@@ -1,5 +1,6 @@
 package com.backend.companyservice.controller;
 
+import com.backend.companyservice.dto.ResponseMessage;
 import com.backend.companyservice.model.Company;
 import com.backend.companyservice.service.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +15,14 @@ import java.util.List;
 @RequestMapping("api/company")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin("http://localhost:5173")
 public class CompanyController {
     private final CompanyService companyService;
 
-    @PostMapping("/saved_company")
+    @PostMapping()
     public ResponseEntity<?> saveCompany(@RequestBody Company company){
-        this.companyService.saveCompany(company);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Company savedCompany = this.companyService.saveCompany(company);
+        ResponseMessage<Company> responseMessage = new ResponseMessage<>(savedCompany, "Company salvata con successo");
+        return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
 
     @GetMapping
@@ -29,7 +30,14 @@ public class CompanyController {
         List<Company> companyList = this.companyService.getCompanies();
         return new ResponseEntity<>(companyList, HttpStatus.OK);
     }
+
+    @GetMapping("login")
+    public ResponseEntity<?> login(@RequestParam(name = "email") String email){
+        Company company = this.companyService.getCompanyByEmail(email);
+        ResponseMessage<Company> responseMessage = new ResponseMessage<>(company, "Login con successo");
+        return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
+}
 
 
 

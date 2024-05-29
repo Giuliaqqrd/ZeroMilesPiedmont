@@ -32,6 +32,10 @@ spring:
            predicates:
              - Path=/api/shop/**
 
+         - id: notification-service
+           uri: lb://notification-service
+           predicates:
+             - Path=/api/notification/**
 
 server:
   port: 8080

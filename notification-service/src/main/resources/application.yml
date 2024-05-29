@@ -1,12 +1,12 @@
 spring:
   application:
-    name: shop-service
+    name: notification-service
   data:
     mongodb:
-      database: shop
+      database: notification
       authentication-database: admin
       host: localhost
-      port: 27092
+      port: 27093
       username: admin
       password: password
       auto-index-creation: true
@@ -15,10 +15,12 @@ spring:
     port: 5672
     username: guest
     password: guest
+
 server:
-  port: 8092
+  port: 8093
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+

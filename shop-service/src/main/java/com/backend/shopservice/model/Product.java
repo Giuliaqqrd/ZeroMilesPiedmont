@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Data
 @CompoundIndexes({
-        @CompoundIndex(name = "nameprod_idcomp", def = "{'name': 1, 'company.id': 1}")
+        @CompoundIndex(name = "nameprod_idcomp", def = "{'name': 1, 'companyId': 1}")
 })
 public class Product {
     @Id
@@ -23,10 +23,7 @@ public class Product {
     private String name;
     private int quantity;
     private float price;
-    private Company company;
-
-
-
+    private String companyId;
 }
 
 

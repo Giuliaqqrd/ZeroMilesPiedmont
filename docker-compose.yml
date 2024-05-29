@@ -45,6 +45,22 @@ services:
     networks:
       - backendnetwork
 
+  mongo-notification:
+    image: mongo:latest
+    container_name: mongo-notification
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=notification
+    ports:
+      - "27093:27017"
+    volumes:
+      - mongo_data_notification:/data/db
+    restart: always
+    networks:
+      - backendnetwork
+
+
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
@@ -60,6 +76,8 @@ volumes:
   mongo_data_user:
   mongo_data_company:
   mongo_data_shop:
+  mongo_data_notification:
+
 
 networks:
   backendnetwork:
