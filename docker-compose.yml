@@ -71,6 +71,123 @@ services:
     networks:
       - backendnetwork
 
+  api-gateway-service:
+    build: api-gateway-service
+    image: api-gateway-service
+    container_name: api-gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - backendnetwork
+
+  company-service:
+    build: company-service
+    image: company-service
+    container_name: company-service
+    ports:
+      - "8091:8091"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      - SPRING_DATA_MONGODB_HOST=mongo-company
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_USERNAME=admin
+      - SPRING_DATA_MONGODB_PASSWORD=password
+      - SPRING_DATA_MONGODB_DATABASE=company
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - backendnetwork
+
+  notification-service:
+    build: notification-service
+    image: notification-service
+    container_name: notification-service
+    ports:
+      - "8093:8093"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      - SPRING_DATA_MONGODB_HOST=mongo-notification
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_USERNAME=admin
+      - SPRING_DATA_MONGODB_PASSWORD=password
+      - SPRING_DATA_MONGODB_DATABASE=notification
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    depends_on:
+      - discovery-service
+      - rabbitmq
+    restart: always
+    networks:
+      - backendnetwork
+
+  shop-service:
+    build: shop-service
+    image: shop-service
+    container_name: shop-service
+    ports:
+      - "8092:8092"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      - SPRING_DATA_MONGODB_HOST=mongo-shop
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_USERNAME=admin
+      - SPRING_DATA_MONGODB_PASSWORD=password
+      - SPRING_DATA_MONGODB_DATABASE=shop
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    depends_on:
+      - discovery-service
+      - rabbitmq
+    restart: always
+    networks:
+      - backendnetwork
+
+  user-service:
+    build: user-service
+    image: user-service
+    container_name: user-service
+    ports:
+      - "8090:8090"
+    environment:
+      - EUREKA_SERVER=http://discovery-service:8761/eureka/
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
+      - SPRING_DATA_MONGODB_AUTO_INDEX_CREATION=true
+      - SPRING_DATA_MONGODB_HOST=mongo-user
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_USERNAME=admin
+      - SPRING_DATA_MONGODB_PASSWORD=password
+      - SPRING_DATA_MONGODB_DATABASE=user
+    depends_on:
+      - discovery-service
+    restart: always
+    networks:
+      - backendnetwork
+
+  discovery-service:
+    build: discovery-service
+    image: discovery-service
+    container_name: discovery-service
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - backendnetwork
 
 volumes:
   mongo_data_user:
