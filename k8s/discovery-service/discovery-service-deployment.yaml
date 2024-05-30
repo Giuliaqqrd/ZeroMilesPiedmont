@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-service
+  labels:
+    app: discovery-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discovery-service
+  template:
+    metadata:
+      name: discovery-service
+      labels:
+        app: discovery-service
+    spec:
+      containers:
+        - name: discovery-service
+          image: giuliaqqrd/discoveryservice:v1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8761
+      restartPolicy: Always
+      

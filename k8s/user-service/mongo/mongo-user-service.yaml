@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-user-svc
+  labels:
+    app: mongo-user
+spec:
+  selector:
+    app: mongo-user
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  clusterIP: none
+  

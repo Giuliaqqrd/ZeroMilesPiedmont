@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-service
+  labels:
+    app: shop-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shop-service
+  template:
+    metadata:
+      name: shop-service
+      labels:
+        app: shop-service
+    spec:
+      containers:
+        - name: shop-service
+          image: giuliaqqrd/shopservice:v1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8092
+          env:
+            - name: EUREKA_SERVER
+              value: "http://discovery-service:8761/eureka/"
+            - name: SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE
+              value: "admin"
+            - name: SPRING_DATA_MONGODB_AUTO_INDEX_CREATION
+              value: "true"
+            - name: SPRING_DATA_MONGODB_HOST
+              value: "mongo-shop"
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "27017"
+            - name: SPRING_DATA_MONGODB_USERNAME
+              value: "admin"
+            - name: SPRING_DATA_MONGODB_PASSWORD
+              value: "password"
+            - name: SPRING_DATA_MONGODB_DATABASE
+              value: "shop"
+            - name: SPRING_RABBITMQ_HOST
+              value: "rabbitmq"
+            - name: SPRING_RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_RABBITMQ_USERNAME
+              value: "guest"
+            - name: SPRING_RABBITMQ_PASSWORD
+              value: "guest"
+      restartPolicy: Always
+      

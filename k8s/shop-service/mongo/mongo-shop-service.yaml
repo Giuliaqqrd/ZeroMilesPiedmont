@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-shop-svc
+  labels:
+    app: mongo-shop
+spec:
+  selector:
+    app: mongo-shop
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+  clusterIP: none
+  

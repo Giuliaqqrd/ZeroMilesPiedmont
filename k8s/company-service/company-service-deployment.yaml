@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: company-service
+  labels:
+    app: company-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: company-service
+  template:
+    metadata:
+      name: company-service
+      labels:
+        app: company-service
+    spec:
+      containers:
+        - name: company-service
+          image: giuliaqqrd/companyservice:v1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8091
+          env:
+            - name: EUREKA_SERVER
+              value: "http://discovery-service:8761/eureka/"
+            - name: SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE
+              value: "admin"
+            - name: SPRING_DATA_MONGODB_AUTO_INDEX_CREATION
+              value: "true"
+            - name: SPRING_DATA_MONGODB_HOST
+              value: "mongo-company"
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "27017"
+            - name: SPRING_DATA_MONGODB_USERNAME
+              value: "admin"
+            - name: SPRING_DATA_MONGODB_PASSWORD
+              value: "password"
+            - name: SPRING_DATA_MONGODB_DATABASE
+              value: "company"
+      restartPolicy: Always
+
+      
