@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: discovery-service
-          image: giuliaqqrd/discoveryservice:v1.0
+          image: giuliaqqrd/discoveryservice:v1.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8761
