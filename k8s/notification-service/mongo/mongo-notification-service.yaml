@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-notification-svc
+  name: mongo-notification
   labels:
     app: mongo-notification
 spec:
@@ -11,5 +11,5 @@ spec:
     - protocol: TCP
       port: 27017
       targetPort: 27017
-  clusterIP: none
+
   

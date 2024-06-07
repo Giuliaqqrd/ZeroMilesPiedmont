@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: mongo-notification
 spec:
-  serviceName: mongo-notification-svc
+  serviceName: mongo-notification
   replicas: 1
   selector:
     matchLabels:

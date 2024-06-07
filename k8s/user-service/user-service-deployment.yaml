@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: giuliaqqrd/userservice:v1.0
+          image: giuliaqqrd/userservice:v1.3
           imagePullPolicy: Always
           ports:
             - containerPort: 8090

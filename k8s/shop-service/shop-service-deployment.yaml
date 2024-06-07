@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: shop-service
-          image: giuliaqqrd/shopservice:v1.0
+          image: giuliaqqrd/shopservice:v1.3
           imagePullPolicy: Always
           ports:
             - containerPort: 8092

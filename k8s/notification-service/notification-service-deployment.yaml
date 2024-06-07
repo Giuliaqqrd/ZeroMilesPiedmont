@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: notification-service
-          image: giuliaqqrd/notificationservice:v1.0
+          image: giuliaqqrd/notificationservice:v1.3
           imagePullPolicy: Always
           ports:
             - containerPort: 8093

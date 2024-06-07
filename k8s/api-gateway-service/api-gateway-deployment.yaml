@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: api-gateway-service
-          image: giuliaqqrd/apigateway:v1.0
+          image: giuliaqqrd/apigateway:v1.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

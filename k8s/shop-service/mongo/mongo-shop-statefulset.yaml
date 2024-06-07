@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: mongo-shop
 spec:
-  serviceName: mongo-shop-svc
+  serviceName: mongo-shop
   replicas: 1
   selector:
     matchLabels:
