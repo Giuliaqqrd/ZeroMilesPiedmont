@@ -76,16 +76,7 @@ L'autenticazione dei consumer avviene tramite l'API di Google, consentendo agli 
     ```sh
     npm run serve
     ```
-
-## Contributi
-
-I contributi sono benvenuti! Per favore, apri un issue o invia una pull request nel repository corrispondente.
-
-## Licenza
-
-Questo progetto è rilasciato sotto la licenza MIT. Per maggiori dettagli, vedere il file LICENSE nel repository.
-
 ---
 
-Grazie per aver scelto ZeroMilesPiedmont! Speriamo che vi offra un'esperienza di shopping online fluida e piacevole. Se avete domande o feedback, non esitate a contattarci.
+Grazie per aver scelto ZeroMilesPiedmont! Speriamo che vi offra un'esperienza di shopping online piacevole. Se avete domande o feedback, non esitate a contattarci.
 
