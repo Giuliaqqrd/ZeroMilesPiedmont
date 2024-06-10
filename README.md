@@ -39,8 +39,8 @@ L'autenticazione dei consumer avviene tramite l'API di Google, consentendo agli 
 
 ## Requisiti
 
-- **Backend**: Kubernetes, MongoDB, RabbitMQ
-- **Frontend**: Node.js, Vue 3, Pinia
+- **Backend**: Docker, Minikube
+- **Frontend**: Node.js, Vue 3, Pinia, Bootstrap5
 
 ## Installazione e Avvio
 
@@ -52,9 +52,7 @@ L'autenticazione dei consumer avviene tramite l'API di Google, consentendo agli 
     cd ZeroMilesPiedmont
     ```
 
-2. Modificare i file di configurazione Kubernetes (`k8s/`) per puntare alle immagini Docker corrette su Docker Hub.
-
-3. Deployare i microservizi su Kubernetes.
+2. Deployare i microservizi su Kubernetes.
     ```sh
     kubectl apply -f k8s/
     ```
